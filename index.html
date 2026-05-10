@@ -338,8 +338,16 @@
   .case-card:nth-child(2) { animation-delay: 0.2s; }
   .case-card:nth-child(3) { animation-delay: 0.3s; }
   .case-card:nth-child(4) { animation-delay: 0.4s; }
+  .case-card:nth-child(5) { animation-delay: 0.5s; }
+  .case-card:nth-child(6) { animation-delay: 0.6s; }
+  .case-card:nth-child(7) { animation-delay: 0.7s; }
   @keyframes fadeUp {
     to { opacity: 1; transform: translateY(0); }
+  }
+  .case-card.open {
+    opacity: 1;
+    transform: translateY(0);
+    animation: none;
   }
 </style>
 </head>
@@ -352,27 +360,77 @@
   <p>Especialista en mejora continua con enfoque sistémico y orientado a datos. Diseño e implemento soluciones que los equipos adoptan y sostienen, combinando análisis riguroso, gestión del cambio y tecnología aplicada.</p>
   <div class="hero-meta">
     <div class="hero-stat">
-      <div class="num">5→7.5</div>
+      <div class="num">5.0→7.5</div>
       <div class="label">Calificación promedio de órdenes</div>
     </div>
     <div class="hero-stat">
-      <div class="num">4</div>
-      <div class="label">Proyectos implementados</div>
+      <div class="num">4 meses</div>
+      <div class="label">Cero procesos a operación medible y automatizada</div>
     </div>
     <div class="hero-stat">
-      <div class="num">100%</div>
-      <div class="label">Cobertura de órdenes evaluadas</div>
+      <div class="num">6</div>
+      <div class="label">Sistemas construidos desde la idea hasta la adopción</div>
     </div>
   </div>
 </header>
+
+<!-- SOBRE MÍ -->
+<div class="section" style="padding-bottom: 0;">
+  <p class="section-label">Quién soy</p>
+  <h2 class="section-title">Agustina Vernengo</h2>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+    <div>
+      <p style="font-size:16px; line-height:1.9; color:#3a3530;">
+        Pienso en sistemas, ejecuto con datos y no implemento nada que el equipo no pueda sostener solo.<br><br>
+        Trabajo en mejora continua desde una convicción simple: los problemas operativos casi siempre tienen causa raíz medible. Mi diferencial es combinar el análisis riguroso con la capacidad de traducirlo en cambios que los equipos adoptan de verdad, no en informes que quedan en un cajón.<br><br>
+        Tengo formación técnica agropecuaria del secundario universitario de la UBA y actualmente estoy terminando tercer año de Ingeniería Industrial en la Universidad de Palermo. Toda mi trayectoria profesional fue en paralelo a los estudios, lo que me dio un marco práctico que complementa y, en muchos casos, adelanta la teoría.
+      </p>
+    </div>
+    <div>
+      <div style="margin-bottom:32px;">
+        <p class="section-label" style="margin-bottom:16px;">Formación</p>
+        <div style="border-left: 2px solid var(--border); padding-left: 20px; display:flex; flex-direction:column; gap:20px;">
+          <div>
+            <p style="font-size:13px; color:var(--accent); letter-spacing:1px; margin-bottom:4px;">En curso · 2025 →</p>
+            <p style="font-size:15px; font-weight:500;">Ingeniería Industrial</p>
+            <p style="font-size:13px; color:var(--muted);">Universidad de Palermo · 3er año</p>
+          </div>
+          <div>
+            <p style="font-size:13px; color:var(--accent); letter-spacing:1px; margin-bottom:4px;">Completado</p>
+            <p style="font-size:15px; font-weight:500;">Técnica Agropecuaria y Agroalimentaria</p>
+            <p style="font-size:13px; color:var(--muted);">Secundario Universitario · UBA</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="section-label" style="margin-bottom:16px;">Contacto</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a href="/cdn-cgi/l/email-protection#bfded8cacccbd6d1dec9dacdd1dad1d8d0ffd8d2ded6d391dcd0d2" style="font-size:14px; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:10px;">
+            <span style="color:var(--accent);">✉</span> <span class="__cf_email__" data-cfemail="204147555354494e415645524e454e474f60474d41494c0e434f4d">[email&#160;protected]</span>
+          </a>
+          <a href="https://linkedin.com/in/agustina-vernengo" target="_blank" style="font-size:14px; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:10px;">
+            <span style="color:var(--accent);">in</span> linkedin.com/in/agustina-vernengo
+          </a>
+          <a href="https://wa.me/5491127221791" target="_blank" style="font-size:14px; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:10px;">
+            <span style="color:var(--accent);">📱</span> +54 11 2722-1791
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" style="margin-top:60px;">
 
 <!-- METODOLOGÍA -->
 <div class="section">
   <p class="section-label">Mi enfoque</p>
   <h2 class="section-title">Cómo trabajo</h2>
   <div class="method-block">
-    <p>Cada intervención parte de la misma convicción: <strong>sin datos, solo tenés opiniones</strong>. Antes de proponer cualquier solución, construyo la capacidad de medir. Antes de medir, entiendo el sistema completo. Y antes de implementar, trabajo con el equipo para que la solución sea suya, no mía.<br><br>
-    Mi metodología sigue un ciclo consistente: <strong>diagnóstico basado en datos → identificación de causa raíz → co-construcción de la acción correctiva → verificación por KPI → ajuste o cierre</strong>. Lo que diferencia este proceso es la instancia intermedia: una reunión individual con cada colaborador donde los datos no son un juicio, sino una conversación. Primero escucho las causas desde quien las vive, luego construimos juntos la solución. Esto convierte resistencias iniciales en adopción real.</p>
+    <p>Cuando aparece un problema, mi primer instinto no es resolverlo: es entenderlo. Casi siempre lo que se ve primero es un síntoma, y resolver síntomas es la forma más eficiente de no cambiar nada.<br><br>
+    Lo que busco antes de actuar es la respuesta a una pregunta: <strong>¿qué falla en el sistema que hace que esto ocurra?</strong> No en las personas. En el sistema. Porque si la solución depende de que alguien recuerde, tenga voluntad o no se distraiga, no es una solución: es una fuente de próximos problemas.<br><br>
+    Una vez que entiendo la causa raíz, diseño con una sola restricción no negociable: <strong>tiene que poder funcionar sin mí</strong>. Eso implica involucrar al equipo desde el diseño, no solo en la implementación. Y verificar con datos que el cambio fue real, no solo percibido.<br><br>
+    Mi ciclo es siempre el mismo: <strong>diagnóstico con datos → causa raíz → solución co-construida → implementación → verificación por KPI → ajuste o cierre</strong>. Lo que varía es la herramienta. Lo que no varía es el criterio.</p>
   </div>
 </div>
 
@@ -680,11 +738,220 @@
       </div>
     </div>
 
+    <!-- CASO 5: RECORDATORIOS CAPACITACIÓN -->
+    <div class="case-card" id="case5">
+      <div class="case-header" onclick="toggleCase('case5')">
+        <div class="case-number">05</div>
+        <div class="case-meta">
+          <h3>Si la solución depende de que alguien recuerde, no es una solución</h3>
+          <p class="quick-summary">Diseño e implementación de un sistema automatizado de inscripción y recordatorios de capacitación, eliminando la dependencia de la memoria individual y adaptando la comunicación al perfil real de cada usuario.</p>
+          <div class="case-tags">
+            <span class="tag accent2">Casi listo</span>
+            <span class="tag">Automatización</span>
+            <span class="tag">AppScript</span>
+            <span class="tag">Google Sheets</span>
+            <span class="tag">Diseño centrado en usuario</span>
+          </div>
+        </div>
+        <div class="case-toggle">+</div>
+      </div>
+      <div class="case-detail">
+        <div class="in-progress-badge">Implementación en curso</div>
+
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Lo que pasó</h4>
+            <p>Dos mecánicos no asistieron a un curso virtual obligatorio. El resultado: presentismo en 100% que cayó, costo del curso desperdiciado y una cadena de responsabilidades difusa. La encargada de capacitación había avisado con anticipación. Los mecánicos dijeron que no los recordaron. Ambas partes tenían razón.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Por qué la respuesta obvia no era la correcta</h4>
+            <p>La respuesta fácil era: "son adultos, es su responsabilidad". Y técnicamente es cierta. Pero un sistema bien diseñado no exige que las personas sean perfectas: está construido para el usuario real, no para el usuario ideal. Los mecánicos no son el perfil que revisa su agenda digital. Pedirle a la encargada que mande recordatorios manuales tampoco era sostenible: sería agregar carga a alguien que ya tiene otras tareas, y dependería de que ella tampoco se olvidara.</p>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p>"El problema no era que nadie avisó. Era que el sistema requería que alguien recordara avisar. Eso es un punto de falla, no una responsabilidad personal."</p>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Solución diseñada</h4>
+            <ul>
+              <li>Formulario HTML con campos estructurados: tipo de curso (virtual/presencial), código, nombre, unidad de negocio, participantes y cursos prerequisito</li>
+              <li>Conexión via AppScript a Google Sheets: cada inscripción genera automáticamente una fila con todos los datos</li>
+              <li>A partir de esa fila, se disparan recordatorios automáticos escalonados: 1 semana antes, 2 días antes, día del curso — diferenciados según si es virtual o presencial</li>
+              <li>Creación automática de evento en Google Calendar para visibilidad adicional</li>
+              <li>Canal de entrega: WhatsApp Business (en proceso de activación)</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Por qué WhatsApp y no mail</h4>
+            <p>Porque el canal tiene que llegar donde está el usuario. Los mecánicos no revisan mail corporativo. WhatsApp sí lo ven. Elegir el canal correcto no es un detalle de implementación: es parte del diseño de la solución. Un recordatorio que nadie lee es lo mismo que ningún recordatorio.</p>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-item">
+            <span class="r-num">0</span>
+            <span class="r-label">Dependencia de memoria individual para recordatorios</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">3x</span>
+            <span class="r-label">Recordatorios automáticos por curso por participante</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">↑</span>
+            <span class="r-label">Interés de RRHH en escalar el sistema a toda la empresa</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASO 6: VALIDADOR DOCUMENTACIÓN 0KM -->
+    <div class="case-card" id="case6">
+      <div class="case-header" onclick="toggleCase('case6')">
+        <div class="case-number">06</div>
+        <div class="case-meta">
+          <h3>Eliminar el error antes de que ocurra: validación automática de documentación para patentamiento</h3>
+          <p class="quick-summary">Diseño de un sistema de carga y validación de documentación para entrega de unidades 0km que elimina el 85% de los retrabajos por datos inconsistentes, integrando OCR y — en etapa futura — verificación en tiempo real contra ARCA.</p>
+          <div class="case-tags">
+            <span class="tag accent2">En curso · MVP</span>
+            <span class="tag">OCR</span>
+            <span class="tag">HTML</span>
+            <span class="tag">Validación de datos</span>
+            <span class="tag">API ARCA</span>
+          </div>
+        </div>
+        <div class="case-toggle">+</div>
+      </div>
+      <div class="case-detail">
+        <div class="in-progress-badge">MVP en desarrollo</div>
+
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>El problema descubierto</h4>
+            <p>Durante el mapeo del proceso de entrega de unidades 0km — desde la hoja de pedido hasta el retiro del cliente — apareció un cuello de botella recurrente: los datos de documentación para patentamiento no coincidían. DNI, estatuto, acta de firmantes, constancia de CUIT: cualquier inconsistencia entre documentos traba todo el proceso. Los plazos de patentamiento se atrasaban, el equipo perdía tiempo corrigiendo errores que podrían haberse evitado en el momento de carga, y el cliente vivía una experiencia frustrante.</p>
+          </div>
+          <div class="detail-block">
+            <h4>La causa raíz</h4>
+            <p>El proceso actual le pedía a una persona que cargara datos manualmente y luego los comparara contra múltiples documentos. Es un proceso tedioso, propenso al error humano y sin ninguna red de seguridad. El problema no era la atención de las personas: era que el sistema no tenía ningún mecanismo de validación antes de avanzar.</p>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p>"No se trataba de que el equipo fuera más cuidadoso. Se trataba de que el sistema no estaba diseñado para detectar errores antes de que se convirtieran en problemas."</p>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Solución en diseño</h4>
+            <ul>
+              <li>Formulario HTML donde el cliente o el asesor carga los documentos requeridos (DNI, estatuto, acta, constancia CUIT)</li>
+              <li>OCR extrae automáticamente los datos relevantes de cada documento</li>
+              <li>El sistema cruza los datos entre documentos y detecta inconsistencias antes de avanzar</li>
+              <li>El asesor solo tiene que confirmar o corregir lo que el sistema ya marcó: mínima fricción, máximo control</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Etapa futura</h4>
+            <ul>
+              <li>Integración API con ARCA para verificación de datos fiscales en tiempo real</li>
+              <li>Validación automática de CUIT activo, condición fiscal y coherencia de datos contra registros oficiales</li>
+              <li>Objetivo: cero errores de documentación que lleguen a la etapa de patentamiento</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-item">
+            <span class="r-num">~85%</span>
+            <span class="r-label">Reducción estimada de retrabajos por documentación</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">↓</span>
+            <span class="r-label">Atrasos en plazos de patentamiento</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">↑</span>
+            <span class="r-label">Experiencia del cliente en el proceso de entrega</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASO 7: DMS A MEDIDA -->
+    <div class="case-card" id="case7">
+      <div class="case-header" onclick="toggleCase('case7')">
+        <div class="case-number">07</div>
+        <div class="case-meta">
+          <h3>Una herramienta que se adapte a nosotros, y no nosotros a ella</h3>
+          <p class="quick-summary">Propuesta y liderazgo de un proceso de transformación del sistema de gestión central: desde el diagnóstico de un DMS legado que bloquea el crecimiento, hasta el relevamiento organizacional y la selección de un desarrollo a medida que integre las necesidades reales de cada nivel.</p>
+          <div class="case-tags">
+            <span class="tag accent2">En curso · Relevamiento</span>
+            <span class="tag">Transformación digital</span>
+            <span class="tag">Sistemas legados</span>
+            <span class="tag">Relevamiento organizacional</span>
+            <span class="tag">Gestión del cambio</span>
+          </div>
+        </div>
+        <div class="case-toggle">+</div>
+      </div>
+      <div class="case-detail">
+        <div class="in-progress-badge">En curso · Etapa de relevamiento y selección de proveedor</div>
+
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>El límite que no se podía ignorar</h4>
+            <p>Varios de los proyectos anteriores encontraron el mismo obstáculo: el DMS obligatorio de la empresa trabaja sobre SQL pero no expone APIs, no permite exportar datos de forma limpia y no habilita integraciones externas. Cada vez que se quería cruzar información, automatizar un flujo o conectar una herramienta nueva, el sistema lo impedía. No era un problema de una funcionalidad: era un problema estructural. Seguir construyendo soluciones alrededor de un sistema que bloquea el crecimiento tiene un límite.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Por qué no era un problema técnico</h4>
+            <p>La frustración inicial fue intentar resolverlo por la vía técnica: hablar con el desarrollador del DMS, explorar workarounds, insistir con integraciones. Pero el proveedor no brinda acceso ni APIs, y no hay señales de que eso vaya a cambiar. Reconocer eso fue el paso más importante: no era un problema que se pudiera resolver con más paciencia o más creatividad técnica. Era un sistema legado que había dejado de servir, y la respuesta tenía que ser proporcional a ese diagnóstico.</p>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p>"En algún punto dejé de buscar cómo trabajar alrededor del sistema y empecé a preguntar por qué seguíamos adaptándonos a él."</p>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Cómo se está encarando</h4>
+            <ul>
+              <li>Relevamiento en tres niveles: gerencia, cargos medios y sector operativo — para entender qué necesita cada uno, qué no está funcionando y qué esperan de una solución nueva</li>
+              <li>Documentación de requerimientos funcionales reales antes de evaluar cualquier proveedor</li>
+              <li>Evaluación de proveedores de desarrollo a medida con criterio de integración: que coexista con el DMS actual durante la transición sin generar disrupciones operativas</li>
+              <li>Foco en sostenibilidad: que el nuevo sistema facilite el trabajo diario de cada rol, no que lo complique con una curva de aprendizaje innecesaria</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Por qué arrancar por las personas y no por la tecnología</h4>
+            <p>La mayoría de las implementaciones tecnológicas fracasan porque se diseñan para el proceso en papel, no para las personas que lo ejecutan. Antes de definir qué sistema construir, hay que entender qué necesita realmente quien lo va a usar todos los días. El relevamiento no es un trámite previo: es la parte más crítica del proyecto. Una herramienta que nadie adopta es peor que no tener herramienta.</p>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-item">
+            <span class="r-num">3</span>
+            <span class="r-label">Niveles organizacionales relevados (gerencia, medios, operativo)</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">↑</span>
+            <span class="r-label">Capacidad de integración e inteligencia operativa proyectada</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">0</span>
+            <span class="r-label">Dependencia de un sistema que no podemos controlar ni extender</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <footer>
-  Portfolio · Mejora Continua & Operaciones
+  Portfolio · Mejora Continua & Operaciones · Agustina Vernengo
 </footer>
 
 <script>

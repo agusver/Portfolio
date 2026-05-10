@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Mejora Continua</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0f0f;
+    --paper: #f5f2ec;
+    --accent: #c8502a;
+    --accent2: #2a6b8a;
+    --muted: #8a8278;
+    --card: #ffffff;
+    --border: #ddd8d0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  .hero {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 60px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,80,42,0.3);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 40%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,80,42,0.15);
+  }
+  .hero-tag {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.05;
+    max-width: 700px;
+    margin-bottom: 24px;
+  }
+  .hero p {
+    font-size: 16px;
+    color: rgba(245,242,236,0.65);
+    max-width: 520px;
+    line-height: 1.8;
+  }
+  .hero-meta {
+    margin-top: 48px;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    border-left: 2px solid var(--accent);
+    padding-left: 16px;
+  }
+  .hero-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--paper);
+  }
+  .hero-stat .label {
+    font-size: 12px;
+    color: rgba(245,242,236,0.5);
+    letter-spacing: 1px;
+  }
+
+  /* SECCIÓN */
+  .section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 48px;
+    color: var(--ink);
+  }
+
+  /* METODOLOGÍA */
+  .method-block {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+  .method-block p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: rgba(245,242,236,0.8);
+  }
+  .method-block strong {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* CASOS */
+  .cases-grid {
+    display: grid;
+    gap: 2px;
+  }
+
+  .case-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .case-header {
+    padding: 40px 48px 32px;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 24px;
+    align-items: start;
+    transition: background 0.2s;
+  }
+  .case-header:hover { background: #fafaf8; }
+
+  .case-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--border);
+    line-height: 1;
+    user-select: none;
+  }
+
+  .case-meta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .case-meta .quick-summary {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+  .case-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .tag {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 2px;
+  }
+  .tag.accent { border-color: var(--accent); color: var(--accent); }
+  .tag.accent2 { border-color: var(--accent2); color: var(--accent2); }
+
+  .case-toggle {
+    font-size: 22px;
+    color: var(--muted);
+    user-select: none;
+    transition: transform 0.3s;
+    padding-top: 4px;
+  }
+  .case-card.open .case-toggle { transform: rotate(45deg); }
+
+  /* DETALLE */
+  .case-detail {
+    display: none;
+    border-top: 1px solid var(--border);
+    padding: 48px;
+    background: #fdfcfa;
+  }
+  .case-card.open .case-detail { display: block; }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 640px) { .detail-grid { grid-template-columns: 1fr; } }
+
+  .detail-block h4 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .detail-block p, .detail-block li {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #3a3530;
+  }
+  .detail-block ul {
+    list-style: none;
+    padding: 0;
+  }
+  .detail-block ul li::before {
+    content: '→ ';
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  .quote-block {
+    border-left: 3px solid var(--accent);
+    padding: 20px 28px;
+    margin: 32px 0;
+    background: rgba(200,80,42,0.04);
+  }
+  .quote-block p {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+
+  .result-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .result-item {
+    flex: 1;
+    min-width: 140px;
+    padding: 20px;
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .result-item .r-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .result-item .r-label {
+    font-size: 12px;
+    color: rgba(245,242,236,0.6);
+    line-height: 1.5;
+  }
+
+  .in-progress-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    border: 1px solid var(--accent2);
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .in-progress-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent2);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 40px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(245,242,236,0.4);
+    text-align: center;
+    padding: 40px;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  /* ANIMACIÓN entrada */
+  .case-card {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.5s forwards;
+  }
+  .case-card:nth-child(1) { animation-delay: 0.1s; }
+  .case-card:nth-child(2) { animation-delay: 0.2s; }
+  .case-card:nth-child(3) { animation-delay: 0.3s; }
+  .case-card:nth-child(4) { animation-delay: 0.4s; }
+  .case-card:nth-child(5) { animation-delay: 0.5s; }
+  .case-card:nth-child(6) { animation-delay: 0.6s; }
+  .case-card:nth-child(7) { animation-delay: 0.7s; }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .case-card.open {
+    opacity: 1;
+    transform: translateY(0);
+    animation: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <p class="hero-tag">Portfolio · Mejora Continua & Operaciones</p>
+  <h1>Transformar datos en decisiones, procesos en resultados.</h1>
+  <p>Especialista en mejora continua con enfoque sistémico y orientado a datos. Diseño e implemento soluciones que los equipos adoptan y sostienen, combinando análisis riguroso, gestión del cambio y tecnología aplicada.</p>
+  <div class="hero-meta">
+    <div class="hero-stat">
+      <div class="num">5.0→7.5</div>
+      <div class="label">Calificación promedio de órdenes</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">4 meses</div>
+      <div class="label">Cero procesos a operación medible y automatizada</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">6</div>
+      <div class="label">Sistemas construidos desde la idea hasta la adopción</div>
+    </div>
+  </div>
+</header>
+
+<!-- SOBRE MÍ -->
+<div class="section" style="padding-bottom: 0;">
+  <p class="section-label">Quién soy</p>
+  <h2 class="section-title">Agustina Vernengo</h2>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+    <div>
+      <p style="font-size:16px; line-height:1.9; color:#3a3530;">
+        Pienso en sistemas, ejecuto con datos y no implemento nada que el equipo no pueda sostener solo.<br><br>
+        Trabajo en mejora continua desde una convicción simple: los problemas operativos casi siempre tienen causa raíz medible. Mi diferencial es combinar el análisis riguroso con la capacidad de traducirlo en cambios que los equipos adoptan de verdad, no en informes que quedan en un cajón.<br><br>
+        Tengo formación técnica agropecuaria del secundario universitario de la UBA y actualmente estoy terminando tercer año de Ingeniería Industrial en la Universidad de Palermo. Toda mi trayectoria profesional fue en paralelo a los estudios, lo que me dio un marco práctico que complementa y, en muchos casos, adelanta la teoría.
+      </p>
+    </div>
+    <div>
+      <div style="margin-bottom:32px;">
+        <p class="section-label" style="margin-bottom:16px;">Formación</p>
+        <div style="border-left: 2px solid var(--border); padding-left: 20px; display:flex; flex-direction:column; gap:20px;">
+          <div>
+            <p style="font-size:13px; color:var(--accent); letter-spacing:1px; margin-bottom:4px;">En curso · 2025 →</p>
+            <p style="font-size:15px; font-weight:500;">Ingeniería Industrial</p>
+            <p style="font-size:13px; color:var(--muted);">Universidad de Palermo · 3er año</p>
+          </div>
+          <div>
+            <p style="font-size:13px; color:var(--accent); letter-spacing:1px; margin-bottom:4px;">Completado</p>
+            <p style="font-size:15px; font-weight:500;">Técnica Agropecuaria y Agroalimentaria</p>
+            <p style="font-size:13px; color:var(--muted);">Secundario Universitario · UBA</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="section-label" style="margin-bottom:16px;">Contacto</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a href="/cdn-cgi/l/email-protection#bfded8cacccbd6d1dec9dacdd1dad1d8d0ffd8d2ded6d391dcd0d2" style="font-size:14px; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:10px;">
+            <span style="color:var(--accent);">✉</span> <span class="__cf_email__" data-cfemail="204147555354494e415645524e454e474f60474d41494c0e434f4d">[email&#160;protected]</span>
+          </a>
+          <a href="https://linkedin.com/in/agustina-vernengo" target="_blank" style="font-size:14px; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:10px;">
+            <span style="color:var(--accent);">in</span> linkedin.com/in/agustina-vernengo
+          </a>
+          <a href="https://wa.me/5491127221791" target="_blank" style="font-size:14px; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:10px;">
+            <span style="color:var(--accent);">📱</span> +54 11 2722-1791
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" style="margin-top:60px;">
+
+<!-- METODOLOGÍA -->
+<div class="section">
+  <p class="section-label">Mi enfoque</p>
+  <h2 class="section-title">Cómo trabajo</h2>
+  <div class="method-block">
+    <p>Cuando aparece un problema, mi primer instinto no es resolverlo: es entenderlo. Casi siempre lo que se ve primero es un síntoma, y resolver síntomas es la forma más eficiente de no cambiar nada.<br><br>
+    Lo que busco antes de actuar es la respuesta a una pregunta: <strong>¿qué falla en el sistema que hace que esto ocurra?</strong> No en las personas. En el sistema. Porque si la solución depende de que alguien recuerde, tenga voluntad o no se distraiga, no es una solución: es una fuente de próximos problemas.<br><br>
+    Una vez que entiendo la causa raíz, diseño con una sola restricción no negociable: <strong>tiene que poder funcionar sin mí</strong>. Eso implica involucrar al equipo desde el diseño, no solo en la implementación. Y verificar con datos que el cambio fue real, no solo percibido.<br><br>
+    Mi ciclo es siempre el mismo: <strong>diagnóstico con datos → causa raíz → solución co-construida → implementación → verificación por KPI → ajuste o cierre</strong>. Lo que varía es la herramienta. Lo que no varía es el criterio.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- CASOS -->
+<div class="section">
+  <p class="section-label">Casos de estudio</p>
+  <h2 class="section-title">Proyectos</h2>
+
+  <div class="cases-grid">
+
+    <!-- CASO 1: MAPEO -->
+    <div class="case-card" id="case1">
+      <div class="case-header" onclick="toggleCase('case1')">
+        <div class="case-number">01</div>
+        <div class="case-meta">
+          <h3>Ver el sistema completo antes de tocarlo</h3>
+          <p class="quick-summary">Mapeo de los procesos del área de postventa para identificar cuellos de botella estructurales y diseñar una hoja de ruta de mejora con base en el flujo real, no en supuestos.</p>
+          <div class="case-tags">
+            <span class="tag accent2">En curso</span>
+            <span class="tag">Mapeo de procesos</span>
+            <span class="tag">Pensamiento sistémico</span>
+            <span class="tag">Diagnóstico organizacional</span>
+          </div>
+        </div>
+        <div class="case-toggle">+</div>
+      </div>
+      <div class="case-detail">
+        <div class="in-progress-badge">Proyecto en curso</div>
+
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Situación inicial</h4>
+            <p>Las mejoras implementadas en los proyectos anteriores generaron datos concretos sobre errores y desvíos dentro del taller. Pero los datos mostraban síntomas, no causas estructurales. Para escalar las mejoras y hacerlas verdaderamente sostenibles, era necesario entender cómo fluye el trabajo de punta a punta: qué pasos existen, en qué orden, quién hace qué, dónde se generan esperas, reprocesos o pérdidas de información.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Por qué era necesario</h4>
+            <p>Sin un mapa del proceso completo, cada mejora corre el riesgo de optimizar una parte del sistema a costa de otra. El mapeo no es un ejercicio teórico: es la base para priorizar intervenciones con criterio, no con intuición. También permite comunicar el estado actual a la dirección con un lenguaje visual y objetivo.</p>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p>"Los datos me mostraban dónde fallaba el resultado. El mapeo me iba a mostrar por qué fallaba el proceso."</p>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Qué se hizo hasta ahora</h4>
+            <ul>
+              <li>Diagrama del proceso actual del taller con tareas y responsables por etapa</li>
+              <li>Identificación de los puntos de transferencia entre roles donde se pierde información</li>
+              <li>Contraste con los desvíos ya registrados en la base de datos para validar hipótesis</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Próximos pasos</h4>
+            <ul>
+              <li>Identificación formal de cuellos de botella y tiempos por etapa</li>
+              <li>Diseño del proceso optimizado (estado futuro)</li>
+              <li>Priorización de intervenciones según impacto y viabilidad</li>
+              <li>Integración con los KPIs ya existentes para medir el impacto de los cambios</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-block" style="margin-top:32px;">
+          <h4>Habilidades en juego</h4>
+          <p>Pensamiento sistémico · Diagnóstico organizacional · Mapeo de procesos (BPM) · Vinculación entre datos operativos y diseño de procesos</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASO 2: BASE DE DATOS -->
+    <div class="case-card" id="case2">
+      <div class="case-header" onclick="toggleCase('case2')">
+        <div class="case-number">02</div>
+        <div class="case-meta">
+          <h3>De opiniones a evidencia: construyendo la primera capa de medición</h3>
+          <p class="quick-summary">Diseño e implementación de una base de datos de evaluación de Órdenes de Reparación con KPIs individuales y globales, que pasó de ser una herramienta de registro a convertirse en el motor del diagnóstico y la mejora continua del taller.</p>
+          <div class="case-tags">
+            <span class="tag accent">Completado</span>
+            <span class="tag">KPIs</span>
+            <span class="tag">Gestión del cambio</span>
+            <span class="tag">Análisis de datos</span>
+          </div>
+        </div>
+        <div class="case-toggle">+</div>
+      </div>
+      <div class="case-detail">
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Situación inicial</h4>
+            <p>El concesionario medía facturación y cantidad de unidades pasadas por taller. Nada más. Existía una percepción generalizada de que había problemas de calidad en las órdenes de reparación, retrabajos frecuentes y errores de documentación, pero todo era percepción. Sin datos, era imposible demostrar la magnitud del problema, identificar patrones o sostener conversaciones de mejora con los colaboradores sin que se sintieran cuestionados personalmente.</p>
+          </div>
+          <div class="detail-block">
+            <h4>El insight que lo disparó</h4>
+            <p>La señal fue clara: conocía el entorno, podía nombrar los problemas, pero no tenía forma de demostrarlos. "Solo tenía opiniones." Y peor aún: era probable que estar cerca del día a día me impidiera ver el panorama completo. Cualquier mejora sin datos corría el riesgo de atacar un síntoma y dejar intacta la causa raíz.</p>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p>"Sabía cuáles eran los problemas. Pero saber no alcanza si no podés demostrarlo con datos."</p>
+        </div>
+
+        <div class="detail-block">
+          <h4>Qué se construyó</h4>
+          <p>Una base de datos que capturaba por cada orden: número, modelo, fechas de apertura y cierre, asesor, técnico y responsable administrativo. Luego tres dimensiones de calificación con criterios objetivos: <strong>claridad del reclamo del cliente</strong> (asesor), <strong>completitud del diagnóstico técnico</strong> (técnico), y <strong>calidad del cierre administrativo</strong> (responsable). Cada dimensión incluía una calificación numérica, oportunidad de mejora específica y documentación faltante. Una fórmula consolidaba la calificación global por orden.</p>
+        </div>
+
+        <div class="detail-grid" style="margin-top:32px;">
+          <div class="detail-block">
+            <h4>Cómo se usaron los datos</h4>
+            <ul>
+              <li>Análisis de errores más frecuentes por colaborador y por tipo de orden</li>
+              <li>Reunión introductoria con el equipo para presentar la metodología y encuadrar el objetivo</li>
+              <li>Reuniones individuales (con jefe presente inicialmente) para mostrar los hallazgos de cada persona</li>
+              <li>Co-construcción de la acción correctiva en la misma reunión</li>
+              <li>Seguimiento por KPI para validar si la solución fue efectiva o requería ajuste</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Gestión de la resistencia</h4>
+            <p>La primera reacción del equipo fue defensiva: nadie quería ser evaluado. El encuadre fue clave: los datos no eran para señalar errores, sino para encontrar los problemas que impedían trabajar bien. Las reuniones individuales dejaron de ser instancias de evaluación y se convirtieron en espacios donde el colaborador explicaba las causas y participaba activamente en la solución. Eso cambió la dinámica por completo.</p>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-item">
+            <span class="r-num">5.0 → 7.5</span>
+            <span class="r-label">Calificación promedio de órdenes</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">↓</span>
+            <span class="r-label">Reducción de retrabajos en taller</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">100%</span>
+            <span class="r-label">Cobertura de órdenes evaluadas (vs. muestreo)</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">↑</span>
+            <span class="r-label">Adopción del equipo tras instancias de co-construcción</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASO 3: TICKETS -->
+    <div class="case-card" id="case3">
+      <div class="case-header" onclick="toggleCase('case3')">
+        <div class="case-number">03</div>
+        <div class="case-meta">
+          <h3>Eliminar el "yo pensé que lo hacías vos": trazabilidad operativa con tickets y Kanban</h3>
+          <p class="quick-summary">Implementación de un sistema de tickets integrado al DMS y un tablero Kanban para eliminar la ambigüedad sobre responsabilidades, reducir tareas olvidadas y dar visibilidad en tiempo real al estado de cada orden y su responsable actual.</p>
+          <div class="case-tags">
+            <span class="tag accent">Completado</span>
+            <span class="tag">Trazabilidad</span>
+            <span class="tag">Kanban</span>
+            <span class="tag">DMS</span>
+            <span class="tag">Comunicación operativa</span>
+          </div>
+        </div>
+        <div class="case-toggle">+</div>
+      </div>
+      <div class="case-detail">
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Situación inicial</h4>
+            <p>En las reuniones de seguimiento aparecía siempre el mismo patrón: alguien no había hecho una tarea porque asumía que otro la estaba haciendo. Al preguntar al otro, resultaba que nunca había recibido la indicación, o que sí la recibió pero luego le pidieron otra cosa y la primera quedó olvidada. Las delegaciones eran verbales, las prioridades eran implícitas y no había ningún registro de quién tenía qué pendiente.</p>
+          </div>
+          <div class="detail-block">
+            <h4>El diagnóstico</h4>
+            <p>El problema no era falta de voluntad ni capacidad: era falta de estructura. Sin un sistema que formalizara los compromisos, cualquier tarea dependía de la memoria individual. La solución tenía que hacer visible lo que antes era invisible: quién tiene qué tarea, en qué estado está y desde cuándo.</p>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p>"No era un problema de personas. Era un problema de sistema: sin trazabilidad, la responsabilidad siempre termina siendo de nadie."</p>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Solución implementada</h4>
+            <ul>
+              <li>Sistema de tickets con destinatario, opción de copia y descripción en lenguaje claro y accionable</li>
+              <li>Integración con el DMS a través del equipo externo de programación: estado de la orden y responsable actual visibles para cualquier persona</li>
+              <li>Tablero Kanban para visualización del flujo de órdenes y detección rápida de desvíos</li>
+              <li>Mecanismo de aceptación: para transferir responsabilidad, el receptor debe aceptar activamente la tarea</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>KPIs incorporados</h4>
+            <ul>
+              <li>Tiempo promedio de resolución de tickets</li>
+              <li>Tasa de tareas completadas en tiempo</li>
+              <li>Órdenes sin responsable asignado (desvío crítico)</li>
+              <li>Frecuencia de reasignaciones (indicador de sobrecarga o confusión)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-item">
+            <span class="r-num">↓</span>
+            <span class="r-label">Confusiones sobre responsabilidades</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">↑</span>
+            <span class="r-label">Cumplimiento de tareas comprometidas</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">↑</span>
+            <span class="r-label">Calidad de la comunicación interna y con el cliente</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">360°</span>
+            <span class="r-label">Visibilidad del estado de cada orden desde cualquier rol</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASO 4: AUTOMATIZACIÓN -->
+    <div class="case-card" id="case4">
+      <div class="case-header" onclick="toggleCase('case4')">
+        <div class="case-number">04</div>
+        <div class="case-meta">
+          <h3>Escalar el control de calidad sin escalar el esfuerzo: automatización con Python y LLM</h3>
+          <p class="quick-summary">Automatización completa del proceso de evaluación de Órdenes de Reparación mediante un script en Python integrado con un modelo de lenguaje, logrando cobertura del 100% de órdenes y liberando tiempo para el análisis, el diagnóstico y la mejora.</p>
+          <div class="case-tags">
+            <span class="tag accent">Completado</span>
+            <span class="tag">Python</span>
+            <span class="tag">LLM</span>
+            <span class="tag">Automatización</span>
+            <span class="tag">Control de calidad</span>
+          </div>
+        </div>
+        <div class="case-toggle">+</div>
+      </div>
+      <div class="case-detail">
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>El problema de escala</h4>
+            <p>La base de datos manual funcionaba: generaba datos, orientaba mejoras y mostraba resultados. Pero tenía un límite claro. Para que los datos fueran confiables, había que evaluar todas las órdenes, no un muestreo. Y evaluar todas las órdenes de forma manual era insostenible: al tercer día de llenado continuo, la carga cognitiva hacía que la tarea se postergara, generando brechas en la cobertura y sesgos en la selección.</p>
+          </div>
+          <div class="detail-block">
+            <h4>La decisión de automatizar</h4>
+            <p>La evaluación era tediosa pero necesaria, repetitiva pero no trivial: requería criterio. La pregunta fue si un modelo de lenguaje podía aplicar ese criterio de forma consistente. La respuesta fue sí, con la condición de darle instrucciones suficientemente claras y específicas por tipo de reparación. El tiempo que tomó no fue entrenar al modelo, sino escribir el script en Python que orquestara todo el flujo.</p>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p>"No automaticé porque era moderno. Automaticé porque al tercer día ya no quería hacerlo, y eso me decía que el proceso no era sostenible."</p>
+        </div>
+
+        <div class="detail-block">
+          <h4>Qué evalúa el sistema automatizado</h4>
+          <ul style="margin-top:12px;">
+            <li><strong>Claridad del reclamo del cliente</strong> — ¿El asesor capturó lo que el cliente realmente describió? ¿Es accionable para el técnico?</li>
+            <li><strong>Completitud del diagnóstico técnico</strong> — ¿El técnico documentó el hallazgo, la causa y la intervención realizada con suficiente detalle?</li>
+            <li><strong>Calidad del cierre administrativo</strong> — ¿La documentación está completa? ¿La comunicación al cliente es clara y coherente con el trabajo realizado?</li>
+          </ul>
+        </div>
+
+        <div class="detail-grid" style="margin-top:32px;">
+          <div class="detail-block">
+            <h4>Cómo se implementó</h4>
+            <ul>
+              <li>Definición de criterios de evaluación objetivos por dimensión y tipo de orden</li>
+              <li>Escritura del prompt con instrucciones estructuradas para el LLM</li>
+              <li>Desarrollo del script en Python para procesar las órdenes, llamar al modelo y volcar los resultados en la base de datos existente</li>
+              <li>Validación cruzada entre evaluaciones manuales previas y automáticas para calibrar consistencia</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Qué se logró liberar</h4>
+            <ul>
+              <li>Tiempo antes destinado al llenado manual → ahora dedicado al análisis de patrones</li>
+              <li>Capacidad para hacer diagnósticos individuales con mayor frecuencia</li>
+              <li>Cobertura del 100% de órdenes sin sacrificar profundidad de evaluación</li>
+              <li>Escalabilidad: el sistema funciona igual con 20 órdenes que con 200</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-item">
+            <span class="r-num">100%</span>
+            <span class="r-label">Órdenes evaluadas (antes: muestreo parcial)</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">↑</span>
+            <span class="r-label">Frecuencia de diagnósticos individuales</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">↓</span>
+            <span class="r-label">Tiempo dedicado a tareas repetitivas</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">∞</span>
+            <span class="r-label">Escalabilidad del sistema de evaluación</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASO 5: RECORDATORIOS CAPACITACIÓN -->
+    <div class="case-card" id="case5">
+      <div class="case-header" onclick="toggleCase('case5')">
+        <div class="case-number">05</div>
+        <div class="case-meta">
+          <h3>Si la solución depende de que alguien recuerde, no es una solución</h3>
+          <p class="quick-summary">Diseño e implementación de un sistema automatizado de inscripción y recordatorios de capacitación, eliminando la dependencia de la memoria individual y adaptando la comunicación al perfil real de cada usuario.</p>
+          <div class="case-tags">
+            <span class="tag accent2">Casi listo</span>
+            <span class="tag">Automatización</span>
+            <span class="tag">AppScript</span>
+            <span class="tag">Google Sheets</span>
+            <span class="tag">Diseño centrado en usuario</span>
+          </div>
+        </div>
+        <div class="case-toggle">+</div>
+      </div>
+      <div class="case-detail">
+        <div class="in-progress-badge">Implementación en curso</div>
+
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Lo que pasó</h4>
+            <p>Dos mecánicos no asistieron a un curso virtual obligatorio. El resultado: presentismo en 100% que cayó, costo del curso desperdiciado y una cadena de responsabilidades difusa. La encargada de capacitación había avisado con anticipación. Los mecánicos dijeron que no los recordaron. Ambas partes tenían razón.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Por qué la respuesta obvia no era la correcta</h4>
+            <p>La respuesta fácil era: "son adultos, es su responsabilidad". Y técnicamente es cierta. Pero un sistema bien diseñado no exige que las personas sean perfectas: está construido para el usuario real, no para el usuario ideal. Los mecánicos no son el perfil que revisa su agenda digital. Pedirle a la encargada que mande recordatorios manuales tampoco era sostenible: sería agregar carga a alguien que ya tiene otras tareas, y dependería de que ella tampoco se olvidara.</p>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p>"El problema no era que nadie avisó. Era que el sistema requería que alguien recordara avisar. Eso es un punto de falla, no una responsabilidad personal."</p>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Solución diseñada</h4>
+            <ul>
+              <li>Formulario HTML con campos estructurados: tipo de curso (virtual/presencial), código, nombre, unidad de negocio, participantes y cursos prerequisito</li>
+              <li>Conexión via AppScript a Google Sheets: cada inscripción genera automáticamente una fila con todos los datos</li>
+              <li>A partir de esa fila, se disparan recordatorios automáticos escalonados: 1 semana antes, 2 días antes, día del curso — diferenciados según si es virtual o presencial</li>
+              <li>Creación automática de evento en Google Calendar para visibilidad adicional</li>
+              <li>Canal de entrega: WhatsApp Business (en proceso de activación)</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Por qué WhatsApp y no mail</h4>
+            <p>Porque el canal tiene que llegar donde está el usuario. Los mecánicos no revisan mail corporativo. WhatsApp sí lo ven. Elegir el canal correcto no es un detalle de implementación: es parte del diseño de la solución. Un recordatorio que nadie lee es lo mismo que ningún recordatorio.</p>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-item">
+            <span class="r-num">0</span>
+            <span class="r-label">Dependencia de memoria individual para recordatorios</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">3x</span>
+            <span class="r-label">Recordatorios automáticos por curso por participante</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">↑</span>
+            <span class="r-label">Interés de RRHH en escalar el sistema a toda la empresa</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASO 6: VALIDADOR DOCUMENTACIÓN 0KM -->
+    <div class="case-card" id="case6">
+      <div class="case-header" onclick="toggleCase('case6')">
+        <div class="case-number">06</div>
+        <div class="case-meta">
+          <h3>Eliminar el error antes de que ocurra: validación automática de documentación para patentamiento</h3>
+          <p class="quick-summary">Diseño de un sistema de carga y validación de documentación para entrega de unidades 0km que elimina el 85% de los retrabajos por datos inconsistentes, integrando OCR y — en etapa futura — verificación en tiempo real contra ARCA.</p>
+          <div class="case-tags">
+            <span class="tag accent2">En curso · MVP</span>
+            <span class="tag">OCR</span>
+            <span class="tag">HTML</span>
+            <span class="tag">Validación de datos</span>
+            <span class="tag">API ARCA</span>
+          </div>
+        </div>
+        <div class="case-toggle">+</div>
+      </div>
+      <div class="case-detail">
+        <div class="in-progress-badge">MVP en desarrollo</div>
+
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>El problema descubierto</h4>
+            <p>Durante el mapeo del proceso de entrega de unidades 0km — desde la hoja de pedido hasta el retiro del cliente — apareció un cuello de botella recurrente: los datos de documentación para patentamiento no coincidían. DNI, estatuto, acta de firmantes, constancia de CUIT: cualquier inconsistencia entre documentos traba todo el proceso. Los plazos de patentamiento se atrasaban, el equipo perdía tiempo corrigiendo errores que podrían haberse evitado en el momento de carga, y el cliente vivía una experiencia frustrante.</p>
+          </div>
+          <div class="detail-block">
+            <h4>La causa raíz</h4>
+            <p>El proceso actual le pedía a una persona que cargara datos manualmente y luego los comparara contra múltiples documentos. Es un proceso tedioso, propenso al error humano y sin ninguna red de seguridad. El problema no era la atención de las personas: era que el sistema no tenía ningún mecanismo de validación antes de avanzar.</p>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p>"No se trataba de que el equipo fuera más cuidadoso. Se trataba de que el sistema no estaba diseñado para detectar errores antes de que se convirtieran en problemas."</p>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Solución en diseño</h4>
+            <ul>
+              <li>Formulario HTML donde el cliente o el asesor carga los documentos requeridos (DNI, estatuto, acta, constancia CUIT)</li>
+              <li>OCR extrae automáticamente los datos relevantes de cada documento</li>
+              <li>El sistema cruza los datos entre documentos y detecta inconsistencias antes de avanzar</li>
+              <li>El asesor solo tiene que confirmar o corregir lo que el sistema ya marcó: mínima fricción, máximo control</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Etapa futura</h4>
+            <ul>
+              <li>Integración API con ARCA para verificación de datos fiscales en tiempo real</li>
+              <li>Validación automática de CUIT activo, condición fiscal y coherencia de datos contra registros oficiales</li>
+              <li>Objetivo: cero errores de documentación que lleguen a la etapa de patentamiento</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-item">
+            <span class="r-num">~85%</span>
+            <span class="r-label">Reducción estimada de retrabajos por documentación</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">↓</span>
+            <span class="r-label">Atrasos en plazos de patentamiento</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">↑</span>
+            <span class="r-label">Experiencia del cliente en el proceso de entrega</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASO 7: DMS A MEDIDA -->
+    <div class="case-card" id="case7">
+      <div class="case-header" onclick="toggleCase('case7')">
+        <div class="case-number">07</div>
+        <div class="case-meta">
+          <h3>Una herramienta que se adapte a nosotros, y no nosotros a ella</h3>
+          <p class="quick-summary">Propuesta y liderazgo de un proceso de transformación del sistema de gestión central: desde el diagnóstico de un DMS legado que bloquea el crecimiento, hasta el relevamiento organizacional y la selección de un desarrollo a medida que integre las necesidades reales de cada nivel.</p>
+          <div class="case-tags">
+            <span class="tag accent2">En curso · Relevamiento</span>
+            <span class="tag">Transformación digital</span>
+            <span class="tag">Sistemas legados</span>
+            <span class="tag">Relevamiento organizacional</span>
+            <span class="tag">Gestión del cambio</span>
+          </div>
+        </div>
+        <div class="case-toggle">+</div>
+      </div>
+      <div class="case-detail">
+        <div class="in-progress-badge">En curso · Etapa de relevamiento y selección de proveedor</div>
+
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>El límite que no se podía ignorar</h4>
+            <p>Varios de los proyectos anteriores encontraron el mismo obstáculo: el DMS obligatorio de la empresa trabaja sobre SQL pero no expone APIs, no permite exportar datos de forma limpia y no habilita integraciones externas. Cada vez que se quería cruzar información, automatizar un flujo o conectar una herramienta nueva, el sistema lo impedía. No era un problema de una funcionalidad: era un problema estructural. Seguir construyendo soluciones alrededor de un sistema que bloquea el crecimiento tiene un límite.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Por qué no era un problema técnico</h4>
+            <p>La frustración inicial fue intentar resolverlo por la vía técnica: hablar con el desarrollador del DMS, explorar workarounds, insistir con integraciones. Pero el proveedor no brinda acceso ni APIs, y no hay señales de que eso vaya a cambiar. Reconocer eso fue el paso más importante: no era un problema que se pudiera resolver con más paciencia o más creatividad técnica. Era un sistema legado que había dejado de servir, y la respuesta tenía que ser proporcional a ese diagnóstico.</p>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p>"En algún punto dejé de buscar cómo trabajar alrededor del sistema y empecé a preguntar por qué seguíamos adaptándonos a él."</p>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail-block">
+            <h4>Cómo se está encarando</h4>
+            <ul>
+              <li>Relevamiento en tres niveles: gerencia, cargos medios y sector operativo — para entender qué necesita cada uno, qué no está funcionando y qué esperan de una solución nueva</li>
+              <li>Documentación de requerimientos funcionales reales antes de evaluar cualquier proveedor</li>
+              <li>Evaluación de proveedores de desarrollo a medida con criterio de integración: que coexista con el DMS actual durante la transición sin generar disrupciones operativas</li>
+              <li>Foco en sostenibilidad: que el nuevo sistema facilite el trabajo diario de cada rol, no que lo complique con una curva de aprendizaje innecesaria</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Por qué arrancar por las personas y no por la tecnología</h4>
+            <p>La mayoría de las implementaciones tecnológicas fracasan porque se diseñan para el proceso en papel, no para las personas que lo ejecutan. Antes de definir qué sistema construir, hay que entender qué necesita realmente quien lo va a usar todos los días. El relevamiento no es un trámite previo: es la parte más crítica del proyecto. Una herramienta que nadie adopta es peor que no tener herramienta.</p>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-item">
+            <span class="r-num">3</span>
+            <span class="r-label">Niveles organizacionales relevados (gerencia, medios, operativo)</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">↑</span>
+            <span class="r-label">Capacidad de integración e inteligencia operativa proyectada</span>
+          </div>
+          <div class="result-item">
+            <span class="r-num">0</span>
+            <span class="r-label">Dependencia de un sistema que no podemos controlar ni extender</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  Portfolio · Mejora Continua & Operaciones · Agustina Vernengo
+</footer>
+
+<script>
+  function toggleCase(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
